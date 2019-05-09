@@ -13,6 +13,7 @@ with open('config.json') as config_file:
 def main():
     # Logging functionality
     logger = GPLogger("USMTF DataPump")
+    
     logger.info('Beginning monitor for USMTF Messages...')
     
     # Function to watch a folder and detect new images on a 1 second refresh interval
@@ -32,7 +33,7 @@ def main():
         if removed: logger.info(("Removed: ", ", ".join (removed)))
         before = after
 
-        if count == 10:
+        if count == 14:
             print("Exiting")
             exit()
 
