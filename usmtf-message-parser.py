@@ -86,6 +86,7 @@ def main():
 
             with open(doc_path, mode='r') as file:
                 base_message = {}
+                messages = []
 
                 message = file.read()
                 lines = message.split("\n")
@@ -95,7 +96,7 @@ def main():
                 base_message['msg_unit'] = msg_id[2]
 
                 if msg_type == 'TACELINT':
-                    messages = []
+                    
                     process_tacelint(logger, base_message, lines, messages)
                     logger.info(len(messages))
                 
