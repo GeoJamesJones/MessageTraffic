@@ -55,9 +55,12 @@ def tacelint(logger_item, message_dict, lines_list, processed_message_list):
 
         if line_split[0] == 'AMPN':
             message_dict['ampn'] = line_split[1]
+            processed_message_list.append(message_dict)
             continue
 
         if line_split[0] == 'NARR':
             message_dict['narr'] = line_split[1]
+            processed_message_list.append(message_dict)
+            continue
 
         
