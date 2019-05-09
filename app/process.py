@@ -38,9 +38,26 @@ def tacelint(logger_item, message_dict, lines_list, processed_message_list):
             message_dict['freq'] = line_split[2][:-3]
             message_dict['freq-units'] = line_split[2][-3:]
             message_dict['pri'] = line_split[4].split(":")[1]
-            message_dict['pd'] = line_split[6].split(":")[1]
+            if len(line_split) == 7:
+                message_dict['pd'] = line_split[6].split(":")[1]
             processed_message_list.append(message_dict)
             continue
         elif line_split[0] !=  'PRM' and 'loc' in message_dict.keys():
             processed_message_list.append(message_dict)
             continue
+
+        if line_split[0] == 'REF':
+            message_dict['serial-letter'] = line_split[1]
+            message_dict['ref-type'] = line_split[2]
+            message_dict['originiator'] = line_split[3]
+            message_dict['dt-ref'] = line_split[4]
+            continue
+
+        if line_split[0] == 'AMPN':
+            message_dict['ampn'] = line_split[1]
+            continue
+
+        if line_split[0] == 'NARR':
+            message_dict['narr'] = line_split[1]
+
+        

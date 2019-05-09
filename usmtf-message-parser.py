@@ -33,7 +33,7 @@ def main():
         if removed: logger.info(("Removed: ", ", ".join (removed)))
         before = after
 
-        if count == 14:
+        if count == 3:
             print("Exiting")
             exit()
 
@@ -49,16 +49,19 @@ def main():
                 lines = message.split("\n")
                 msg_id = [i for i in lines if 'MSGID' in i][0].split("/")
                 msg_type = msg_id[1]
-                base_message['msg_type'] = msg_type
-                base_message['msg_unit'] = msg_id[2]
+                base_message['msg-type'] = msg_type
+                base_message['originator'] = msg_id[2]
+                base_message['serial-number'] = msg_id[3]
 
                 if msg_type == 'TACELINT':
 
-                    try:
+                    if True:
+                    #try:
                         process.tacelint(logger, base_message, lines, messages)
                         logger.info("{0} events created from {1}".format(str(len(messages)), doc))
-                    except Exception as e:
-                        logger.error('Error on message: {}'.format(doc), e)
+                        #print(messages)
+                    #except Exception as e:
+                        #logger.error('Error on message: {}'.format(doc), e)
                 
             
 
